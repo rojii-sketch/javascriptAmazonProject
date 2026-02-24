@@ -2,15 +2,17 @@
 import {cart,removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formartCurrency} from './utils/money.js';
-let cartSummaryHTML = "";
+
+  let cartSummaryHTML = "";
 cart.forEach((cartItem)=>{
   const productId = cartItem.productId;
 
 let matchingProduct;
 
-matchingProduct = products.find(product => product.id=== productId);
+matchingProduct = products.find(product => product.id === productId);
+console.log('Found product',matchingProduct);
 
-cartSummaryHTML+= `
+cartSummaryHTML += `
    <div class="cart-item-container js-cart-item-container-${matchingProduct.id} ">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
@@ -88,7 +90,12 @@ cartSummaryHTML+= `
           </div>
   `
 });
+
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
+
+
+
+
 document.querySelectorAll('.js-delete-quantity-link').forEach((link)=>{
   link.addEventListener('click',()=>{
     const productId= link.dataset.productId;
@@ -100,4 +107,5 @@ document.querySelectorAll('.js-delete-quantity-link').forEach((link)=>{
   });
   
 })
+
 
