@@ -4,9 +4,9 @@ import {products, getProduct} from '../../data/products.js';
 import {formartCurrency} from '../utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { renderPaymentSummary } from './payementSummary.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOption.js'
-console.log(hello());
-console.log(deliveryOptions)
+
 export function renderOrderSummary (){
 
 
@@ -114,6 +114,7 @@ export function renderOrderSummary (){
 
       );
       container.remove();
+      renderPaymentSummary();
     });
     
   })
@@ -122,6 +123,7 @@ export function renderOrderSummary (){
       const {productId, deliveryOptionId}= element.dataset;
       updateDeliveryOption(productId, deliveryOptionId)
       renderOrderSummary();
+      renderPaymentSummary();
     })
   })
 
